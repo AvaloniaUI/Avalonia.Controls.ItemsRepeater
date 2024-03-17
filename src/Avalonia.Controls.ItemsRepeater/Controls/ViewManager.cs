@@ -129,7 +129,7 @@ namespace Avalonia.Controls
             // During creation of this object, we were the one setting the DataContext, so clear it now.
             if (virtInfo.MustClearDataContext)
             {
-                element.DataContext = null;
+                element.SetCurrentValue(Control.DataContextProperty, null);
             }
 
             if (_owner.ItemTemplateShim != null)
@@ -634,7 +634,7 @@ namespace Avalonia.Controls
             if (data != element)
             {
                 // Prepare the element
-                element.DataContext = data;
+                element.SetCurrentValue(Control.DataContextProperty, data);
                 virtInfo.MustClearDataContext = true;
             }
 
