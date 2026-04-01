@@ -19,7 +19,9 @@ jobs:
     - name: Install .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 8.0.x
+        dotnet-version: |
+          8.0.x
+          10.0.x
 
     - name: Execute unit tests
       run: dotnet test
@@ -28,7 +30,7 @@ jobs:
       run: dotnet pack src/**/*.csproj -o ${{ runner.temp }}/nuget
 
     - name: Upload build artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: Packages
         path: ${{ runner.temp }}/nuget
