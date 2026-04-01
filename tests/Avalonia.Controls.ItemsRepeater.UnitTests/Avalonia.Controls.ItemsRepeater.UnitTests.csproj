@@ -7,6 +7,8 @@
 
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
+    <AssemblyName>ItemsRepeater.UnitTests</AssemblyName>
+    <RootNamespace>Avalonia.Controls.UnitTests</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,8 +17,8 @@
     <PackageReference Include="Avalonia.Markup.Xaml.Loader" Version="$(AvaloniaSampleVersion)" />
     <PackageReference Include="coverlet.collector" Version="6.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
-    <PackageReference Include="xunit" Version="2.5.3" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
+    <PackageReference Include="xunit.v3" Version="3.2.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.0" />
   </ItemGroup>
 
   <ItemGroup>
