@@ -15,6 +15,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
+        submodules: true
 
     - name: Install .NET
       uses: actions/setup-dotnet@v4
@@ -27,10 +28,21 @@ jobs:
       run: dotnet test
 
     - name: Execute dotnet pack
-      run: dotnet pack src/**/*.csproj -o ${{ runner.temp }}/nuget
+      run: dotnet pack src/**/*.csproj -o artifacts/nuget
+
+    # Generates a per-package CycloneDX SBOM (EU Cyber Resilience Act evidence) and embeds it
+    # into each .nupkg, so it must run after packing and before the packages are uploaded.
+    - name: Generate SBOMs
+      run: dotnet run --project build/_build.csproj
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:
         name: Packages
-        path: ${{ runner.temp }}/nuget
+        path: artifacts/nuget
+
+    - name: Upload SBOMs
+      uses: actions/upload-artifact@v4
+      with:
+        name: sbom
+        path: artifacts/sbom/*.cdx.json

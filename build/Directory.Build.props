@@ -1,0 +1,4 @@
+<!-- Isolates the build project from the repository-wide Directory.Build.props, whose settings
+     (LangVersion, analyzers, trimming) target the shipped library rather than the nuke build. -->
+<Project>
+</Project>
